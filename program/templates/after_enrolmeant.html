@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- start header  -->
+<!-- Overlay Start -->
+<div class="overlay"></div>
+<!-- Overlay End -->
+
+<!-- Page Banner Start -->
+<div class="section page-banner">
+
+    <img class="shape-1 animation-round" src="{% static 'images/shape/shape-8.png' %}" alt="Shape">
+
+    <img class="shape-2" src="{% static 'images/shape/shape-23.png' %}" alt="Shape">
+
+    <div class="container">
+        <!-- Page Banner Start -->
+        <div class="page-banner-content">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Program Lectures</li>
+            </ul>
+            <h2 class="title">{{lecture.program}}</h2>
+        </div>
+        <!-- Page Banner End -->
+    </div>
+
+    <!-- Shape Icon Box Start -->
+    <div class="shape-icon-box">
+
+        <img class="icon-shape-1 animation-left" src="{% static 'images/shape/shape-5.png' %}" alt="Shape">
+
+        <div class="box-content">
+            <div class="box-wrapper">
+                <i class="flaticon-badge"></i>
+            </div>
+        </div>
+
+        <img class="icon-shape-2" src="{% static 'images/shape/shape-6.png' %}" alt="Shape">
+
+    </div>
+    <!-- Shape Icon Box End -->
+
+    <img class="shape-3" src="{% static 'images/shape/shape-24.png' %}" alt="Shape">
+
+    <img class="shape-author" src="{% static 'images/author/author-11.jpg' %}" alt="Shape">
+
+</div>
+<div class="section section-padding-02 mt-n1">
+</div>
+<!-- Page Banner End -->
+<!-- end header -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section">
+    <!-- Courses Enroll Wrapper Start -->
+    <div class="courses-enroll-wrapper">
+
+        <!-- Courses Video Player Start -->
+        <div class="courses-video-player">
+
+            <!-- Courses Video Container Start -->
+            <!-- <div class="vidcontainer">
+                <iframe class="vidcontainer" width="100%" height="315"
+                 src="{{lecture.video}}">
+                  </iframe>
+            </div> -->
+            <div class="vidcontainer">
+            <iframe width="100%" height="100%" src="{{lecture.video}}"></iframe>
+        </div> 
+            <!-- Courses Video Container End -->
+
+            <!-- Courses Enroll Content Start -->
+            <div class="courses-enroll-content">
+
+                <!-- Courses Enroll Title Start -->
+                
+                <div class="courses-enroll-title">
+                    <h2 class="title">{{lecture.name}}</h2>
+                </div>
+                <div class="courses-enroll-tab-content">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="tab1">
+
+                            <!-- Overview Start -->
+                            <div class="overview">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="enroll-tab-content">
+                                            <p>{{lecture.text}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Courses Video Player End -->
+
+        <!-- Courses Video Playlist Start -->
+        <div class="courses-video-playlist">
+            <div class="playlist-title">
+                <h3 class="title">Course Content</h3>
+            </div>
+
+            <!-- Video Playlist Start  -->
+            <div class="video-playlist">
+                <div class="accordion" id="videoPlaylist">
+
+                    <!-- Accordion Items Start  -->
+                    <div class="accordion-item">
+                        
+                            <div class="vids">
+                                {% if program.creator == user %}
+                                <div class="single-form">
+                                    <a href="/programs/add-lecture/?program_id={{program.id}}">Add Lecture</a>
+                                </div>
+                                {% endif %}
+                                
+                                {% for lecture in lectures %}
+                                <a href="/programs/{{lecture.program.id}}/{{lecture.id}}">
+                                    <p>{{lecture.name}}</p>
+                                    {% if program.creator == user %}
+                                      
+                                    <a href="/programs/delete-lecture/{{lecture.id}}">delete</a>
+                                    {% endif %}
+                                    
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Items End  -->
+
+
+                </div>
+            <!-- Video Playlist End  -->
+
+        </div>
+        <!-- Courses Video Playlist End -->
+
+    </div>
+    <!-- Courses Enroll Wrapper End -->
+
+</div>
+{% endblock content %}
